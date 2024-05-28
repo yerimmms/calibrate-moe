@@ -1,0 +1,19 @@
+models:
+  - model: mistralai/Mistral-7B-v0.1  # no parameters necessary for base model
+  - model: WizardLM/WizardMath-7B-V1.1
+    parameters:
+      density: 0.5  # fraction of weights in differences from the base model to retain
+      weight:   # weight gradient
+        - filter: mlp
+          value: 0.5
+        - value: 0
+  - model: codellama/CodeLlama-7b-Instruct-hf
+    parameters:
+      density: 0.5
+      weight: 0.5
+merge_method: ties
+base_model: mistralai/Mistral-7B-v0.1
+parameters:
+  normalize: true
+  int8_mask: true
+dtype: float16
