@@ -1,0 +1,40 @@
+base_model: meta-llama/Llama-2-7b-hf
+gate_mode: hidden # one of "hidden", "cheap_embed", or "random"
+dtype: bfloat16 # output dtype (float32, float16, or bfloat16)
+## (optional)
+# experts_per_token: 2
+experts:
+  - source_model: meta-llama/Llama-2-7b-hf
+    positive_prompts:
+    - "chat"
+    - "assistant"
+    - "tell me"
+    - "explain"
+    - "I want"
+    ## (optional)
+    # negative_prompts:
+    #   - "This is a prompt expert_model_1 should not be used for"
+  - source_model: codellama/CodeLlama-7b-Instruct-hf
+    positive_prompts:
+    - "code"
+    - "python"
+    - "javascript"
+    - "programming"
+    - "algorithm"
+    - "C#"
+    - "C++"
+    - "debug"
+    - "runtime"
+    - "html"
+    - "command"
+    - "nodejs"
+  - source_model: meta-math/MetaMath-Mistral-7B
+    positive_prompts:
+    - "reason"
+    - "math"
+    - "mathematics"
+    - "solve"
+    - "count"
+    - "calculate"
+    - "arithmetic"
+    - "algebra"
